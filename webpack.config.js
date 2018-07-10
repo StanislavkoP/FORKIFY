@@ -7,9 +7,19 @@ module.exports = {
         index: ['babel-polyfill', './src/index.js'],
     },
     output: {
-        path: path.resolve(__dirname, 'public/scripts'),
-        filename: '[name]-bundle.js'
+        path: path.resolve(__dirname, 'public'),
+        filename: 'js/[name]-bundle.js'
     },
+    devServer: {
+        contentBase: path.resolve(__dirname, 'public'),
+    },
+    devtool: 'source-map',
+    plugins: [
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: './src/index.html'
+        })
+    ],
     module: {
         rules: [{
             test: /\.js$/,
@@ -19,15 +29,5 @@ module.exports = {
             }
         }]
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: './src/index.html'
-        })
-    ],
-    devServer: {
-        contentBase: path.resolve(__dirname, 'public'),
-        publicPath: '/scripts/'
-    },
-    devtool: 'source-map'
+
 }
