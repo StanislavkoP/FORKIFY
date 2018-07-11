@@ -28,5 +28,15 @@ elements.searchForm.addEventListener('submit', function(e){
 	controlSearch();
 });
 
+elements.searchResultPages.addEventListener('click', function(e){
+	const btn = e.target.closest('.btn-inline');
+
+	if(btn) {
+		const goToPage = parseInt(btn.dataset.goto, 10);
+		searchView.clearResults();
+		searchView.renderResults(state.search.result, goToPage);
+	}
+});
+
 /* const search = new Search('pizza')
 search.getResults().then(data => console.log(data)).catch(e => alert(e)) */
