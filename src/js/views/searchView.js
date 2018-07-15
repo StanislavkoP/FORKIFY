@@ -13,6 +13,13 @@ export const clearResults = () => {
 	elements.searchResultPages.innerHTML = ''
 }
 
+export const highlightSelected = (id) => {
+	const arrActiveElments = Array.from(document.querySelectorAll('.results__link--active'));
+	arrActiveElments.forEach(el => el.classList.remove('results__link--active'))
+	
+	document.querySelector(`a[href="#${id}"]`).classList.add('results__link--active')
+}
+
 const limitRecipeTitle = (title, limit = 17) => {
 	const newTitle = [];
 	if(title.length > limit){
